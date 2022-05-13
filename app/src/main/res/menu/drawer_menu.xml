@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Main">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/login_fragment"
+                    android:icon="@drawable/ic_account_24"
+                    android:title="Login" />
+                <item
+                    android:id="@+id/homepage_fragment"
+                    android:icon="@drawable/ic_home_page_24"
+                    android:title="Home page" />
+                <item
+                    android:id="@+id/statistic_fragment"
+                    android:icon="@drawable/ic_statistic_24"
+                    android:title="Statistic" />
+
+                <item
+                    android:id="@+id/actions_fragment"
+                    android:icon="@drawable/ic_actions_24"
+                    android:title="Actions" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="History">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/followed_fragment"
+                    android:icon="@drawable/ic_followed_24"
+                    android:title="Followed" />
+                <item
+                    android:id="@+id/unfollowed_fragment"
+                    android:icon="@drawable/ic_unfollowed_24"
+                    android:title="Unfollowed" />
+                <item
+                    android:id="@+id/liked_fragment"
+                    android:icon="@drawable/ic_like_24"
+                    android:title="Liked" />
+                <item
+                    android:id="@+id/commented_fragment"
+                    android:icon="@drawable/ic_comment_24"
+                    android:title="Commented" />
+                <item
+                    android:id="@+id/watched_fragment"
+                    android:icon="@drawable/ic_eye_24"
+                    android:title="Watched" />
+            </group>
+        </menu>
+    </item>
+
+
+</menu>

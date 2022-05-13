@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mirko_stojanovic_"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <TextView
+        android:id="@+id/followers"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="951 followers"
+        android:textSize="20dp"
+
+        android:layout_marginStart="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/following"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+
+        android:text="230 following"
+        android:textSize="20dp"
+
+        android:layout_marginStart="30dp"
+        app:layout_constraintLeft_toRightOf="@id/followers"
+        app:layout_constraintTop_toTopOf="@id/followers" />
+
+
+
+
+    <TextView
+        android:id="@+id/dailyStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="50dp"
+
+        android:text="Today: "
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+        app:layout_constraintLeft_toLeftOf="@id/followers"
+        app:layout_constraintTop_toBottomOf="@id/followers" />
+
+
+    <TextView
+        android:id="@+id/todayFollowed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Followed: 1/30"
+        android:textSize="@dimen/today_statistic_textsize"
+
+        android:layout_marginTop="40dp"
+        app:layout_constraintLeft_toLeftOf="@+id/dailyStatistic"
+        app:layout_constraintTop_toBottomOf="@+id/dailyStatistic"
+        />
+
+
+    <TextView
+        android:id="@+id/todayUnfollowed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Unfollowed: 1/30"
+        android:textSize="@dimen/today_statistic_textsize"
+
+        android:layout_marginTop="20dp"
+
+
+        app:layout_constraintTop_toBottomOf="@id/todayFollowed"
+        app:layout_constraintLeft_toLeftOf="@+id/dailyStatistic"/>
+
+
+
+
+    <TextView
+        android:id="@+id/todayLiked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Liked: 1/150"
+        android:textSize="@dimen/today_statistic_textsize"
+
+        android:layout_marginTop="20dp"
+
+        app:layout_constraintTop_toBottomOf="@id/todayUnfollowed"
+        app:layout_constraintLeft_toLeftOf="@+id/dailyStatistic"/>
+
+
+
+    <TextView
+        android:id="@+id/todayCommented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Commented: 1/30"
+        android:textSize="@dimen/today_statistic_textsize"
+
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/todayLiked"
+        app:layout_constraintLeft_toLeftOf="@+id/dailyStatistic" />
+
+
+
+    <TextView
+        android:id="@+id/todayStories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Watched stories: 1/30"
+        android:textSize="@dimen/today_statistic_textsize"
+
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/todayCommented"
+        app:layout_constraintLeft_toLeftOf="@+id/dailyStatistic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
