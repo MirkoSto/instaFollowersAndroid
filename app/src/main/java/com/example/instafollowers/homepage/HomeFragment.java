@@ -4,13 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +17,7 @@ import com.example.instafollowers.MainActivity;
 import com.example.instafollowers.databinding.FragmentHomeBinding;
 import com.example.instafollowers.rest.EndpointsInterface;
 import com.example.instafollowers.rest.RetrofitClient;
-import com.example.instafollowers.rest.HomeStatisticModel;
+import com.example.instafollowers.rest.HomeStatisticResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,11 +57,11 @@ public class HomeFragment extends Fragment {
     private void getStatisticData(@NonNull EndpointsInterface methods){
         //TODO: Cuvati u view modelu, da bi se smanjio broj zahteva! (Mozda nije potrebno!)
 
-        Call<HomeStatisticModel> statisticCall = methods.getData();
-        statisticCall.enqueue(new Callback<HomeStatisticModel>() {
+        Call<HomeStatisticResponse> statisticCall = methods.getData();
+        statisticCall.enqueue(new Callback<HomeStatisticResponse>() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onResponse(Call<HomeStatisticModel> call, Response<HomeStatisticModel> response) {
+            public void onResponse(Call<HomeStatisticResponse> call, Response<HomeStatisticResponse> response) {
                 if(response.code() != 200) {
                     Toast.makeText(mainActivity, "Something went wrong! Status code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
@@ -104,7 +100,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<HomeStatisticModel> call, Throwable t) {
+            public void onFailure(Call<HomeStatisticResponse> call, Throwable t) {
                 Log.d("REST", t.getMessage());
             }
         });

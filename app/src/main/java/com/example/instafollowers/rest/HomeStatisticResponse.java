@@ -1,6 +1,6 @@
 package com.example.instafollowers.rest;
 
-public class HomeStatisticModel {
+public class HomeStatisticResponse {
     String followers_number;
     String following_number;
 

@@ -7,6 +7,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -29,7 +31,7 @@ import org.junit.Test;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private SharedPreferences preferences;
     private ActivityMainBinding binding;
     private NavController navController;
     private DrawerLayout drawer;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        preferences = getPreferences(Context.MODE_PRIVATE);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_container);
 
@@ -116,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+    public SharedPreferences getPreferences(){
+        return preferences;
+    }
 }
 
 

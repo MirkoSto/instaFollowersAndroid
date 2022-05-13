@@ -1,5 +1,6 @@
 package com.example.instafollowers;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.instafollowers.databinding.FragmentLoginBinding;
+import com.example.instafollowers.rest.EndpointsInterface;
+import com.example.instafollowers.rest.LoginResponse;
+import com.example.instafollowers.rest.RetrofitClient;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
 
@@ -33,21 +44,64 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
 
 
+
         binding.loginButton.setOnClickListener(v -> {
-           /* if(!binding.usernameLogin.equals("") && !binding.passwordLogin.equals("")){
-                navController.navigate(R.id.homeFragment);
+            String username = binding.usernameLogin.getText().toString().trim();
+            String password = binding.passwordLogin.getText().toString().trim();
+
+            if(username.length() == 0 || password.length() == 0)
+                Toast.makeText(mainActivity, "Unesite podatke", Toast.LENGTH_SHORT).show();
+
+            else{
+                login(username, password);
             }
-            else Toast.makeText(mainActivity, "Unesite podatke", Toast.LENGTH_SHORT).show();
-*/
-            navController.navigate(R.id.homeFragment);
+
+
         });
 
         return binding.getRoot();
     }
+
+    private void login(String username, String password) {
+        // display a progress dialog
+        final ProgressDialog progressDialog = new ProgressDialog(mainActivity);
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait"); // set message
+        progressDialog.show(); // show progress dialog
+
+        EndpointsInterface api = RetrofitClient.getRetrofitInstance().create(EndpointsInterface.class);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("username", username);
+        params.put("password", password);
+
+        Call<LoginResponse> request = api.login(params);
+        request.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                progressDialog.dismiss();
+                mainActivity.getPreferences().edit()
+                        .putBoolean("loggedIn", true)
+                        .putString("username", username)
+                        .putString("password", password)
+                        .apply();
+
+                navController.navigate(R.id.homeFragment);
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable error) {
+                progressDialog.dismiss();
+                Toast.makeText(mainActivity, error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
 
 
     @Override
