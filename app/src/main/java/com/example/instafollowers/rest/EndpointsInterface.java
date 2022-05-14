@@ -19,6 +19,8 @@ public interface EndpointsInterface {
     Call<StartFollowingResponse> startFollowing(@QueryMap Map<String, String> params);
 
     @POST("login")
-    Call<LoginResponse> login(@QueryMap Map<String, String> params);
+    Call<LoginRequest> login(@QueryMap Map<String, String> params);
 
+    @GET("isLoged")
+    Call<LoginResponse> isLogged();
 }
