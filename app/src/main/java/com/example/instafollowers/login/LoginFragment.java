@@ -89,9 +89,7 @@ public class LoginFragment extends Fragment {
         request.enqueue(new Callback<LoginRequest>() {
             @Override
             public void onResponse(Call<LoginRequest> call, Response<LoginRequest> response) {
-
                 mainActivity.getPreferences().edit()
-                        .putBoolean("logging", true)
                         .putString("username", username)
                         .putString("password", password)
                         .apply();
@@ -101,70 +99,78 @@ public class LoginFragment extends Fragment {
             public void onFailure(Call<LoginRequest> call, Throwable error) {
                 progressDialog.dismiss();
                 Toast.makeText(mainActivity, "Doslo je do grekse u logovanju 1!", Toast.LENGTH_LONG).show();
-                Log.d("LOGOVANJE", error.getMessage());
+                Log.d("LOGOVANJE", "Doslo je do grekse u logovanju 1!" + error.getMessage());
 
                 mainActivity.getPreferences().edit()
-                        .putBoolean("logged", false)
+                        .remove("username")
+                        .remove("password")
                         .apply();
             }
         });
 
-        AtomicBoolean logging = new AtomicBoolean(mainActivity.getPreferences().getBoolean("logging", false));
+
+        Log.d("LOGOVANJE", "Cekanje 10 sekundi za proveru statusa!");
+        isLogged(api, progressDialog, 10 * 1000);
+
+
+
+    }
+
+    //Posto se jedna fja koristi dva puta, mora se proveriti da li je vec ulogovan
+    private void isLogged(EndpointsInterface api, ProgressDialog progressDialog, int delayTime){
 
         Handler handler = new Handler();
         Log.d("LOGOVANJE", "Pocetak provere logovanja");
 
+        handler.postDelayed(() -> {
+            Log.d("LOGOVANJE", "Prosao posle 10sec ?");
 
-       // while(logging.get()) {
-            handler.postDelayed(() -> {
-                Log.d("LOGOVANJE", "Prosao posle 5sec ?");
+            Call<LoginResponse> response = api.isLogged();
+            response.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    String message = response.body().getMessage();
+                    Log.d("LOGOVANJE", "response message = " + message);
+                    if (message.equals("logged")) {
+                        Log.d("LOGOVANJE", "ulogovan!");
+                        mainActivity.getPreferences().edit()
+                                .putBoolean("logged", true)
+                                .apply();
 
-                Call<LoginResponse> response = api.isLogged();
-                response.enqueue(new Callback<LoginResponse>() {
-                    @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        String message = response.body().getMessage();
-
-                        if (message.equals("logged")) {
-                            Log.d("LOGOVANEJ", "ulogovan");
-                            mainActivity.getPreferences().edit()
-                                    .remove("logging")
-                                    .putBoolean("logged", true)
-                                    .apply();
-
-
-                            progressDialog.dismiss();
-                            navController.navigate(R.id.homeFragment);
-
-                        }
+                        progressDialog.dismiss();
+                        navController.navigate(R.id.homeFragment);
 
                     }
-
-                    @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable error) {
+                    else{
+                        Toast.makeText(mainActivity, "Neuspelo logovanje!", Toast.LENGTH_LONG).show();
+                        Log.d("LOGOVANJE", "Neuspelo logovanje!");
                         progressDialog.dismiss();
-                        Toast.makeText(mainActivity, "Doslo je do grekse u logovanju 2!", Toast.LENGTH_LONG).show();
-                        Log.d("LOGOVANJE", error.getMessage());
                         mainActivity.getPreferences().edit()
-                                .remove("logging")
                                 .remove("username")
                                 .remove("password")
+                                .putBoolean("login_failed", true)
                                 .putBoolean("logged", false)
                                 .apply();
                     }
-                });
 
-                logging.set(mainActivity.getPreferences().getBoolean("logging", false));
+                }
 
-            }, 8000);
-   //     }
-
-        //ako nije doslo ni do kakvog problema u logovanju, ulogovao se, zatvori progressDialog
-       // Log.d("LOGOVANJE", "provera za gasenje dialoga");
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable error) {
+                    progressDialog.dismiss();
+                    Toast.makeText(mainActivity, "Doslo je do grekse u logovanju 2!", Toast.LENGTH_LONG).show();
+                    Log.d("LOGOVANJE", error.getMessage());
+                    mainActivity.getPreferences().edit()
+                            .remove("username")
+                            .remove("password")
+                            .putBoolean("login_failed", true)
+                            .putBoolean("logged", false)
+                            .apply();
+                }
+            });
+        }, delayTime);
 
     }
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

@@ -4,8 +4,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    //private static final String BASE_URL = "http://192.168.1.43:5000/";
-    private static final String BASE_URL = "http://91.187.154.98:5000/";
+    private static final String BASE_URL = "http://192.168.1.43:5000/";
+   //private static final String BASE_URL = "http://192.168.153.32:5000/";
 
     private static Retrofit retrofit;
 
