@@ -30,6 +30,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_login"
         android:layout_height="wrap_content"
@@ -43,8 +44,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_log_layout"
         app:layout_constraintRight_toRightOf="parent"
+
         />
 
+
+    <ImageView
+        android:id="@+id/show_pass_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+
+        android:alpha="1"
+
+        app:layout_constraintLeft_toRightOf="@id/password_login"
+        app:layout_constraintTop_toTopOf="@id/password_login"
+        app:layout_constraintBottom_toBottomOf="@id/password_login"
+
+        android:src="@drawable/show_password" />
 
     <Button
         android:id="@+id/login_button"

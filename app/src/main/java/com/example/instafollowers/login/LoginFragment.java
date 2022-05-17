@@ -10,6 +10,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +55,20 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
 
+
+        binding.showPassBtn.setOnClickListener( v -> {
+            if(binding.passwordLogin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+
+                //prikazi sifru
+                binding.passwordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                binding.showPassBtn.setImageAlpha(128);
+            }
+            else {
+                //sakrij sifru
+                binding.passwordLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.showPassBtn.setImageAlpha(255);
+            }
+        });
 
 
         binding.loginButton.setOnClickListener(v -> {
