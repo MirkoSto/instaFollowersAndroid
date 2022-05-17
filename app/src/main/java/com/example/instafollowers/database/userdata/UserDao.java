@@ -13,6 +13,6 @@ public interface UserDao {
     void createUser(User user);
 
     @Query("Select tags from User")
-    LiveData<String[]> getUserData();
+    LiveData<String> getUserData();
 
 }

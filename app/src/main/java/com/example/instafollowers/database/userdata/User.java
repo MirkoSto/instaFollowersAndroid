@@ -1,14 +1,18 @@
 package com.example.instafollowers.database.userdata;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
+    @PrimaryKey
+    @NonNull
     String username;
     String password;
 
-    String [] tags;
+    String tags;
 
     public User(String username, String password) {
         this.username = username;
@@ -31,11 +35,11 @@ public class User {
         this.password = password;
     }
 
-    public String[] getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 }
