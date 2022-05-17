@@ -1,8 +1,13 @@
 package com.example.instafollowers.homepage;
 
+import androidx.hilt.Assisted;
+import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-public class HomeStatisticViewModel extends ViewModel {
+import com.example.instafollowers.database.userdata.UserRepository;
+
+public class UserViewModel extends ViewModel {
     boolean isInitialized;
 
     String username;
@@ -20,6 +25,18 @@ public class HomeStatisticViewModel extends ViewModel {
     int liked;
     int commented;
     int stories;
+
+    private final SavedStateHandle savedStateHandle;
+    private final UserRepository userRepository;
+
+    @ViewModelInject
+    public UserViewModel(
+            UserRepository userRepository,
+            @Assisted SavedStateHandle savedStateHandle) {
+        this.userRepository = userRepository;
+        this.savedStateHandle = savedStateHandle;
+
+    }
 
     public String getUsername() {
         return username;

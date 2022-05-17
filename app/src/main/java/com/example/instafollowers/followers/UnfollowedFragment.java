@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.instafollowers.R;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class UnfollowedFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

@@ -10,11 +10,16 @@ import android.view.ViewGroup;
 
 import com.example.instafollowers.R;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link StatisticFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
+@AndroidEntryPoint
 public class StatisticFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

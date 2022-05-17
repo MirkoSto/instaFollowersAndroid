@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.instafollowers.R;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class UnfollowersFragment extends Fragment {
 
 

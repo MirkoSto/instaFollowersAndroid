@@ -19,17 +19,18 @@ import com.example.instafollowers.rest.EndpointsInterface;
 import com.example.instafollowers.rest.RetrofitClient;
 import com.example.instafollowers.rest.HomeStatisticResponse;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
+@AndroidEntryPoint
 public class HomeFragment extends Fragment {
 
     private MainActivity mainActivity;
     private FragmentHomeBinding binding;
-    private HomeStatisticViewModel viewModel;
+    private UserViewModel viewModel;
 
     public HomeFragment() {
 
@@ -39,7 +40,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainActivity = (MainActivity) requireActivity();
-        viewModel = new ViewModelProvider(mainActivity).get(HomeStatisticViewModel.class);
+        viewModel = new ViewModelProvider(mainActivity).get(UserViewModel.class);
     }
 
     @Override

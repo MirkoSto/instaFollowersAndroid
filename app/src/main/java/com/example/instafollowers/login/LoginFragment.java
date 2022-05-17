@@ -30,10 +30,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+@AndroidEntryPoint
 public class LoginFragment extends Fragment {
 
     private MainActivity mainActivity;

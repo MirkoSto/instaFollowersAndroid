@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.instafollowers.MainActivity;
 import com.example.instafollowers.databinding.FragmentActionsBinding;
-import com.example.instafollowers.homepage.HomeStatisticViewModel;
+import com.example.instafollowers.homepage.UserViewModel;
 import com.example.instafollowers.rest.EndpointsInterface;
 import com.example.instafollowers.rest.RetrofitClient;
 import com.example.instafollowers.rest.StartFollowingResponse;
@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -31,13 +32,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+@AndroidEntryPoint
 public class ActionsFragment extends Fragment {
 
     private FragmentActionsBinding binding;
     private MainActivity mainActivity;
     private OkHttpClient httpClient;
-    private HomeStatisticViewModel viewModel;
+    private UserViewModel viewModel;
 
     public ActionsFragment() {
         // Required empty public constructor
@@ -51,7 +52,7 @@ public class ActionsFragment extends Fragment {
 
         mainActivity = (MainActivity) requireActivity();
         httpClient = new OkHttpClient();
-        viewModel = new ViewModelProvider(mainActivity).get(HomeStatisticViewModel.class);
+        viewModel = new ViewModelProvider(mainActivity).get(UserViewModel.class);
     }
 
     @Override
