@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 public class HomeStatisticViewModel extends ViewModel {
     boolean isInitialized;
 
+    String username;
     String followers_number;
     String following_number;
 
@@ -19,6 +20,10 @@ public class HomeStatisticViewModel extends ViewModel {
     int liked;
     int commented;
     int stories;
+
+    public String getUsername() {
+        return username;
+    }
 
     public boolean isInitialized() {
         return isInitialized;

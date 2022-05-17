@@ -1,6 +1,7 @@
 package com.example.instafollowers.rest;
 
 public class HomeStatisticResponse {
+    String username;
     String followers_number;
     String following_number;
 
@@ -15,6 +16,10 @@ public class HomeStatisticResponse {
     int max_liked;
     int max_stories;
     int max_commented;
+
+    public String getUsername() {
+        return username;
+    }
 
     public String getFollowers_number() {
         return followers_number;

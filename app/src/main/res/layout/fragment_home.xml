@@ -7,9 +7,10 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mirko_stojanovic_"
+        android:text="username"
         android:textSize="30dp"
         android:textStyle="bold"
 

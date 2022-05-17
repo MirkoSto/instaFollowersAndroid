@@ -110,7 +110,7 @@ public class LoginFragment extends Fragment {
 
 
         Log.d("LOGOVANJE", "Cekanje 10 sekundi za proveru statusa!");
-        isLogged(api, progressDialog, 10 * 1000);
+        isLogged(api, progressDialog, 20 * 1000);
 
 
 
@@ -123,7 +123,7 @@ public class LoginFragment extends Fragment {
         Log.d("LOGOVANJE", "Pocetak provere logovanja");
 
         handler.postDelayed(() -> {
-            Log.d("LOGOVANJE", "Prosao posle 10sec ?");
+            Log.d("LOGOVANJE", "Prosao posle 20sec ?");
 
             Call<LoginResponse> response = api.isLogged();
             response.enqueue(new Callback<LoginResponse>() {

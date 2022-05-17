@@ -66,37 +66,48 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(mainActivity, "Something went wrong! Status code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String followers_number = response.body().getFollowers_number();
-                String following_number = response.body().getFollowing_number();
 
-                Log.d("REST", "Followers: " + followers_number + "   Following: " + following_number);
+                try{
+                    String username = response.body().getUsername();
+                    String followers_number = response.body().getFollowers_number();
+                    String following_number = response.body().getFollowing_number();
 
-                binding.followers.setText(followers_number + " \nfollowers");
-                binding.following.setText(following_number + " \nfollowing");
+                    Log.d("REST", "Followers: " + followers_number + "   Following: " + following_number);
 
-                int max_followed = response.body().getMax_followed();
-                int max_unfollowed = response.body().getMax_unfollowed();
-                int max_liked = response.body().getMax_liked();
-                int max_commented = response.body().getMax_commented();
-                int max_stories = response.body().getMax_stories();
+                    binding.username.setText(username);
+                    binding.followers.setText(followers_number + " \nfollowers");
+                    binding.following.setText(following_number + " \nfollowing");
 
-                viewModel.setMax_followed(max_followed);
-                viewModel.setMax_unfollowed(max_unfollowed);
-                viewModel.setMax_liked(max_liked);
-                viewModel.setMax_commented(max_commented);
-                viewModel.setMax_stories(max_stories);
+                    int max_followed = response.body().getMax_followed();
+                    int max_unfollowed = response.body().getMax_unfollowed();
+                    int max_liked = response.body().getMax_liked();
+                    int max_commented = response.body().getMax_commented();
+                    int max_stories = response.body().getMax_stories();
 
-                int followed = response.body().getFollowed();
-                int unfollowed = response.body().getUnfollowed();
-                int liked = response.body().getLiked();
-                int commented = response.body().getCommented();
-                int stories = response.body().getStories();
+                    viewModel.setMax_followed(max_followed);
+                    viewModel.setMax_unfollowed(max_unfollowed);
+                    viewModel.setMax_liked(max_liked);
+                    viewModel.setMax_commented(max_commented);
+                    viewModel.setMax_stories(max_stories);
 
-                binding.todayFollowed.setText("Followed: " + followed + "/" + max_followed);
-                binding.todayUnfollowed.setText("Unfollowed: " + unfollowed + "/" + max_unfollowed);
-                binding.todayLiked.setText("Liked: " + liked + "/" + max_liked);
-                binding.todayCommented.setText("Commented: " + commented + "/" + max_commented);
-                binding.todayStories.setText("Stories: " + stories + "/" + max_stories);
+                    int followed = response.body().getFollowed();
+                    int unfollowed = response.body().getUnfollowed();
+                    int liked = response.body().getLiked();
+                    int commented = response.body().getCommented();
+                    int stories = response.body().getStories();
+
+                    binding.todayFollowed.setText("Followed: " + followed + "/" + max_followed);
+                    binding.todayUnfollowed.setText("Unfollowed: " + unfollowed + "/" + max_unfollowed);
+                    binding.todayLiked.setText("Liked: " + liked + "/" + max_liked);
+                    binding.todayCommented.setText("Commented: " + commented + "/" + max_commented);
+                    binding.todayStories.setText("Stories: " + stories + "/" + max_stories);
+                }
+                catch (NullPointerException e){
+                    e.printStackTrace();
+                    //bacam exception kako bi se ugasila app
+                    throw e;
+                }
+
             }
 
             @Override
