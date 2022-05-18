@@ -1,6 +1,6 @@
 package com.example.instafollowers.rest;
 
-public class StartFollowingResponse {
+public class ActionResponse {
     String response;
 
     public String getResponse() {

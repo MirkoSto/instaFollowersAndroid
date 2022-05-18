@@ -64,7 +64,7 @@ public class LoginFragment extends Fragment {
 
                 //prikazi sifru
                 binding.passwordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                binding.showPassBtn.setImageAlpha(128);
+                binding.showPassBtn.setImageAlpha(50);
             }
             else {
                 //sakrij sifru

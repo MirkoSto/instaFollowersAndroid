@@ -20,6 +20,12 @@ public class UserViewModel extends ViewModel {
     int max_commented;
     int max_stories;
 
+     int total_followed;
+     int total_unfollowed;
+     int total_liked;
+     int total_commented;
+     int total_messaged;
+
     int followed;
     int unfollowed;
     int liked;
@@ -144,5 +150,49 @@ public class UserViewModel extends ViewModel {
 
     public void setStories(int stories) {
         this.stories = stories;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getTotal_followed() {
+        return total_followed;
+    }
+
+    public void setTotal_followed(int total_followed) {
+        this.total_followed = total_followed;
+    }
+
+    public int getTotal_unfollowed() {
+        return total_unfollowed;
+    }
+
+    public void setTotal_unfollowed(int total_unfollowed) {
+        this.total_unfollowed = total_unfollowed;
+    }
+
+    public int getTotal_liked() {
+        return total_liked;
+    }
+
+    public void setTotal_liked(int total_liked) {
+        this.total_liked = total_liked;
+    }
+
+    public int getTotal_commented() {
+        return total_commented;
+    }
+
+    public void setTotal_commented(int total_commented) {
+        this.total_commented = total_commented;
+    }
+
+    public int getTotal_messaged() {
+        return total_messaged;
+    }
+
+    public void setTotal_messaged(int total_messaged) {
+        this.total_messaged = total_messaged;
     }
 }

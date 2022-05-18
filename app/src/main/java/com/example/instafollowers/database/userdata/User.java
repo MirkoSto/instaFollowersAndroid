@@ -12,6 +12,7 @@ public class User {
     String username;
     String password;
 
+    //svi tagovi su u jednom stringu
     String tags;
 
     public User(String username, String password) {
