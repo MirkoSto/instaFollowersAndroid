@@ -97,6 +97,17 @@ public class HomeFragment extends Fragment {
                     int commented = response.body().getCommented();
                     int stories = response.body().getStories();
 
+                    viewModel.setFollowers_via_app(response.body().getFollowers_via_app());
+                    viewModel.setFollowers_percentage(response.body().getFollowers_percentage());
+                    
+                    viewModel.setTotal_followed(response.body().getTotal_followed());
+                    viewModel.setTotal_unfollowed(response.body().getTotal_unfollowed());
+                    viewModel.setTotal_liked(response.body().getTotal_liked());
+                    viewModel.setTotal_commented(response.body().getTotal_commented());
+                    viewModel.setTotal_stories(response.body().getTotal_stories());
+
+
+
                     binding.todayFollowed.setText("Followed: " + followed + "/" + max_followed);
                     binding.todayUnfollowed.setText("Unfollowed: " + unfollowed + "/" + max_unfollowed);
                     binding.todayLiked.setText("Liked: " + liked + "/" + max_liked);

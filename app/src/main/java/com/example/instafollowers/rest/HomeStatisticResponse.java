@@ -1,6 +1,9 @@
 package com.example.instafollowers.rest;
 
 public class HomeStatisticResponse {
+    int followers_percentage;
+    int followers_via_app;
+
     String username;
     String followers_number;
     String following_number;
@@ -16,6 +19,12 @@ public class HomeStatisticResponse {
     int max_liked;
     int max_stories;
     int max_commented;
+
+    int total_followed;
+    int total_unfollowed;
+    int total_liked;
+    int total_commented;
+    int total_stories;
 
     public String getUsername() {
         return username;
@@ -67,5 +76,33 @@ public class HomeStatisticResponse {
 
     public int getMax_commented() {
         return max_commented;
+    }
+
+    public int getTotal_followed() {
+        return total_followed;
+    }
+
+    public int getTotal_unfollowed() {
+        return total_unfollowed;
+    }
+
+    public int getTotal_liked() {
+        return total_liked;
+    }
+
+    public int getTotal_commented() {
+        return total_commented;
+    }
+
+    public int getTotal_stories() {
+        return total_stories;
+    }
+
+    public int getFollowers_percentage() {
+        return followers_percentage;
+    }
+
+    public int getFollowers_via_app() {
+        return followers_via_app;
     }
 }

@@ -26,7 +26,7 @@
 
 
     <TextView
-        android:id="@+id/followersByApp"
+        android:id="@+id/followersViaApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -50,7 +50,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/followersByApp" />
+        app:layout_constraintTop_toBottomOf="@+id/followersViaApp" />
 
 
     <View
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/followersPercentage" />
 
     <TextView
-        android:id="@+id/followingByApp"
+        android:id="@+id/followedByApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -90,7 +90,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/followingByApp" />
+        app:layout_constraintTop_toBottomOf="@+id/followedByApp" />
 
 
     <View
@@ -134,11 +134,11 @@
 
 
     <TextView
-        android:id="@+id/messages"
+        android:id="@+id/stories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Total messages: 16"
+        android:text="Total stories: 16"
         android:textSize="20dp"
 
         android:layout_marginTop="10dp"

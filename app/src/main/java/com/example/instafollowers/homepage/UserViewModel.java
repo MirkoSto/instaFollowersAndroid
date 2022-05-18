@@ -10,6 +10,9 @@ import com.example.instafollowers.database.userdata.UserRepository;
 public class UserViewModel extends ViewModel {
     boolean isInitialized;
 
+    int followers_percentage;
+    int followers_via_app;
+
     String username;
     String followers_number;
     String following_number;
@@ -20,11 +23,11 @@ public class UserViewModel extends ViewModel {
     int max_commented;
     int max_stories;
 
-     int total_followed;
-     int total_unfollowed;
-     int total_liked;
-     int total_commented;
-     int total_messaged;
+    int total_followed;
+    int total_unfollowed;
+    int total_liked;
+    int total_commented;
+    int total_stories;
 
     int followed;
     int unfollowed;
@@ -188,11 +191,27 @@ public class UserViewModel extends ViewModel {
         this.total_commented = total_commented;
     }
 
-    public int getTotal_messaged() {
-        return total_messaged;
+    public int getTotal_stories() {
+        return stories;
     }
 
-    public void setTotal_messaged(int total_messaged) {
-        this.total_messaged = total_messaged;
+    public void setTotal_stories(int stories) {
+        this.stories = stories;
+    }
+
+    public int getFollowers_percentage() {
+        return followers_percentage;
+    }
+
+    public void setFollowers_percentage(int followers_percentage) {
+        this.followers_percentage = followers_percentage;
+    }
+
+    public int getFollowers_via_app() {
+        return followers_via_app;
+    }
+
+    public void setFollowers_via_app(int followers_via_app) {
+        this.followers_via_app = followers_via_app;
     }
 }
