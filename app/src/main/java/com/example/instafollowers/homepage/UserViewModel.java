@@ -1,5 +1,7 @@
 package com.example.instafollowers.homepage;
 
+import android.util.Log;
+
 import androidx.hilt.Assisted;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.SavedStateHandle;
@@ -34,6 +36,8 @@ public class UserViewModel extends ViewModel {
     int liked;
     int commented;
     int stories;
+
+    String tags = "";
 
     private final SavedStateHandle savedStateHandle;
     private final UserRepository userRepository;
@@ -214,4 +218,27 @@ public class UserViewModel extends ViewModel {
     public void setFollowers_via_app(int followers_via_app) {
         this.followers_via_app = followers_via_app;
     }
+
+    public String getTags() {
+        if(tags.equals("")){
+            tags = savedStateHandle.get("tags");
+      //      Log.d("TAGOVI", tags);
+        }
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        savedStateHandle.set("tags", tags);
+        this.tags = tags;
+    }
+
+    public void addTag(String tag){
+        if(tags.equals(""))
+            tags = tag;
+        else
+            tags += "," + tag;
+
+        savedStateHandle.set("tags", tags);
+    }
+
 }

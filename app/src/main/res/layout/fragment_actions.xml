@@ -14,10 +14,16 @@
 
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
-        android:text="Add new tag: "
 
+
+        android:text="Add new tag: "
         android:textSize="15dp"
         android:textStyle="bold"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,9 +72,11 @@
 
         android:layout_marginTop="50dp"
         android:text="Start following"
-
-
         android:textSize="12sp"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
 
         app:layout_constraintLeft_toLeftOf="@id/addTagButton"
         app:layout_constraintTop_toBottomOf="@id/tags_layout_wrapper" />
@@ -80,8 +88,11 @@
 
         android:layout_marginTop="20dp"
         android:text="Start unfollowing"
-
         android:textSize="12sp"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
 
         app:layout_constraintLeft_toLeftOf="@id/addTagButton"
         app:layout_constraintTop_toBottomOf="@id/follow_button" />
@@ -94,8 +105,12 @@
 
         android:layout_marginTop="20dp"
         android:text="Start liking"
-
         android:textSize="12sp"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
+
         app:layout_constraintLeft_toLeftOf="@id/addTagButton"
         app:layout_constraintTop_toBottomOf="@id/unfollow_button"
 
@@ -109,8 +124,13 @@
 
         android:layout_marginTop="20dp"
         android:text="Start commentig "
-
         android:textSize="12sp"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
+
+
         app:layout_constraintLeft_toLeftOf="@id/addTagButton"
         app:layout_constraintTop_toBottomOf="@id/like_button"
 
@@ -123,8 +143,13 @@
 
         android:layout_marginTop="20dp"
         android:text="Start watching "
-
         android:textSize="12sp"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
+
+
         app:layout_constraintLeft_toLeftOf="@id/addTagButton"
         app:layout_constraintTop_toBottomOf="@id/comment_button"
 

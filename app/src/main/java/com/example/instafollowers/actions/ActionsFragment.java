@@ -66,27 +66,26 @@ public class ActionsFragment extends Fragment {
 
         binding.addTagButton.setOnClickListener(l -> {
 
-            String tag = Objects.requireNonNull(binding.newTag.getText()).toString();
-            if (allTags.contains(tag))
+            String new_tag = Objects.requireNonNull(binding.newTag.getText()).toString();
+            if (allTags.contains(new_tag) || new_tag.equals(""))
                 return;
             else
-                allTags.add(tag);
-
+                addNewTag(new_tag);
 
             CheckBox checkBox = new CheckBox(mainActivity);
 
-            checkBox.setText(tag);
+            checkBox.setText(new_tag);
 
             checkBox.setOnClickListener(b -> {
                 if (checkBox.isChecked()) {
-                    selectedTags.add(tag); //checkBox.getText().toString()
+                    selectedTags.add(new_tag); //checkBox.getText().toString()
                     Log.d("TAGS", "Selektovan");
                 }
                 else {
-                    selectedTags.remove(tag);
+                    selectedTags.remove(new_tag);
                     Log.d("TAGS", "Nije selektovan");
                 }
-                Log.d("TAGS", tag);
+                Log.d("TAGS", new_tag);
             });
 
             binding.tagsLayout.addView(checkBox);
@@ -107,6 +106,23 @@ public class ActionsFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void addNewTag(String new_tag) {
+        allTags.add(new_tag);
+
+        String tags_string = "";
+        for(String tag : allTags){
+            if(tags_string.equals(""))
+                tags_string = tag;
+            else
+                tags_string += "," + tag;
+        }
+        Log.d("TAGOVI", tags_string);
+
+        preferences.edit()
+                .putString("tags", tags_string)
+                .apply();
     }
 
 

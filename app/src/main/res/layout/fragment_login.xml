@@ -72,6 +72,10 @@
         android:layout_marginTop="288dp"
 
         android:text="login"
+        android:textColor="@color/purple_500"
+
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button"
 
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"

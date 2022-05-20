@@ -4,7 +4,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Context;
@@ -12,6 +14,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.instafollowers.databinding.ActivityMainBinding;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private boolean doubleBackToExitPressedOnce = false;
 
+    private int currentFragmentId;
+
     private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
@@ -57,9 +62,17 @@ public class MainActivity extends AppCompatActivity {
         drawer = binding.drawerLayout;
 
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setTitle("");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+
+
+        if(preferences.getBoolean("logged", false))
+            currentFragmentId = R.id.homeFragment;
+        else
+            currentFragmentId = R.id.loginFragment;
 
         setNavigationMenu();
 
@@ -70,28 +83,39 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setNavigationMenu(){
+        NavOptions options = new NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .build();
 
         binding.navView.setNavigationItemSelectedListener(item -> {
-
+            boolean cleared = false;
             switch (item.getItemId()) {
 
                 case R.id.login_fragment:
-                    navController.navigate(R.id.loginFragment);
+                    navController.navigate(R.id.loginFragment, null, options);
+                    currentFragmentId = R.id.login_fragment;
                     break;
 
                 case R.id.homepage_fragment:
-                    navController.navigate(R.id.homeFragment);
+                    navController.navigate(R.id.homeFragment, null, options);
+
+                    currentFragmentId = R.id.homepage_fragment;
                     break;
 
                 case R.id.statistic_fragment:
-                    navController.navigate(R.id.statisticFragment);
+                    navController.navigate(R.id.statisticFragment, null, options);
+
+                    currentFragmentId = R.id.statistic_fragment;
                     break;
 
                 case R.id.actions_fragment:
-                    navController.navigate(R.id.actionsFragment);
+                    navController.navigate(R.id.actionsFragment, null, options);
+                    currentFragmentId = R.id.actions_fragment;
                     break;
 
             }
+
+            Log.d("FRAGMENTI", "cleared? " + cleared);
 
             binding.drawerLayout.closeDrawer(GravityCompat.START);
             return true;
