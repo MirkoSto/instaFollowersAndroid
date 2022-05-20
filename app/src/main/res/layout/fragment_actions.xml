@@ -19,7 +19,7 @@
         android:text="Add new tag: "
         android:textSize="15dp"
         android:textStyle="bold"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/blue_primary"
 
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"
@@ -41,14 +41,26 @@
         app:layout_constraintTop_toTopOf="@id/addTagButton" />
 
 
+    <ImageButton
+        android:id="@+id/remove_tag_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_trash_24"
+
+        android:layout_marginTop="20dp"
+
+        app:layout_constraintLeft_toLeftOf="@id/addTagButton"
+        app:layout_constraintTop_toBottomOf="@id/addTagButton"
+        />
+
     <ScrollView
         android:id="@+id/tags_layout_wrapper"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@id/follow_button"
-        app:layout_constraintTop_toBottomOf="@id/addTagButton"
-        app:layout_constraintLeft_toLeftOf="@id/addTagButton"
+        app:layout_constraintTop_toBottomOf="@id/remove_tag_button"
+        app:layout_constraintLeft_toLeftOf="@id/remove_tag_button"
         app:layout_constraintRight_toRightOf="@id/new_tag">
 
         <org.apmem.tools.layouts.FlowLayout
@@ -73,7 +85,7 @@
         android:layout_marginTop="50dp"
         android:text="Start following"
         android:textSize="12sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/blue_primary"
 
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"
@@ -89,7 +101,7 @@
         android:layout_marginTop="20dp"
         android:text="Start unfollowing"
         android:textSize="12sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/blue_primary"
 
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"
@@ -106,7 +118,7 @@
         android:layout_marginTop="20dp"
         android:text="Start liking"
         android:textSize="12sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/blue_primary"
 
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"
@@ -125,7 +137,7 @@
         android:layout_marginTop="20dp"
         android:text="Start commentig "
         android:textSize="12sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/blue_primary"
 
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"
@@ -144,7 +156,7 @@
         android:layout_marginTop="20dp"
         android:text="Start watching "
         android:textSize="12sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/blue_primary"
 
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"

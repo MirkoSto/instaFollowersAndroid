@@ -1,9 +1,11 @@
 package com.example.instafollowers.actions;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.instafollowers.MainActivity;
+import com.example.instafollowers.R;
 import com.example.instafollowers.databinding.FragmentActionsBinding;
 import com.example.instafollowers.homepage.UserViewModel;
 import com.example.instafollowers.rest.EndpointsInterface;
@@ -67,6 +70,10 @@ public class ActionsFragment extends Fragment {
         binding.addTagButton.setOnClickListener(l -> {
 
             String new_tag = Objects.requireNonNull(binding.newTag.getText()).toString();
+            if(new_tag.contains(" ") || new_tag.contains("\n")){
+                Toast.makeText(mainActivity, "Tag cannot have blank space!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (allTags.contains(new_tag) || new_tag.equals(""))
                 return;
             else
@@ -75,6 +82,7 @@ public class ActionsFragment extends Fragment {
             CheckBox checkBox = new CheckBox(mainActivity);
 
             checkBox.setText(new_tag);
+            //checkBox.setBackgroundColor(getResources().getColor(R.color.blue_primary));
 
             checkBox.setOnClickListener(b -> {
                 if (checkBox.isChecked()) {
@@ -89,6 +97,37 @@ public class ActionsFragment extends Fragment {
             });
 
             binding.tagsLayout.addView(checkBox);
+        });
+
+        binding.removeTagButton.setOnClickListener(l -> {
+            if(selectedTags.size() == 0){
+                Toast.makeText(mainActivity, "Please select at least one hashtag you want to follow!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Log.d("TAGS", "Broj tagova: " + allTags.size());
+            int num_tags = allTags.size();
+            int num_deleted = 0;
+
+            for(int i = 0; i < num_tags; i++){
+                CheckBox selectedCB;
+                String selectedTag = "null";
+
+                selectedCB = (CheckBox)binding.tagsLayout.getChildAt(i - num_deleted);
+
+                if(selectedCB.isChecked()){
+                    num_deleted++;
+                    selectedTag = selectedCB.getText().toString();
+                    allTags.remove(selectedTag);
+                    selectedTags.remove(selectedTag);
+                    binding.tagsLayout.removeView(selectedCB);
+                }
+
+                Log.d("TAGS", "izbrisan tag " + selectedTag);
+            }
+
+            updatePreferencesForTag();
+            Log.d("TAGS", "Ukupan broj tagova: " + allTags.size() + " Ukupan broj selektovanih: " + selectedTags.size());
         });
 
         EndpointsInterface api = RetrofitClient.getRetrofitInstance().create(EndpointsInterface.class);
@@ -107,6 +146,23 @@ public class ActionsFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    private void updatePreferencesForTag() {
+
+        String new_tags = "";
+
+        for(String tag : allTags){
+            if(new_tags.equals(""))
+                new_tags = tag;
+            else
+                new_tags += "," + tag;
+        }
+
+        preferences.edit()
+                .putString("tags", new_tags)
+                .apply();
+    }
+
 
     private void addNewTag(String new_tag) {
         allTags.add(new_tag);
@@ -138,12 +194,18 @@ public class ActionsFragment extends Fragment {
 
             CheckBox checkBox = new CheckBox(mainActivity);
             checkBox.setText(tag);
+            //checkBox.setColor(getResources().getColor(R.color.blue_primary));
+
             checkBox.setOnClickListener(l -> {
-                if (l.isSelected())
+                if (checkBox.isChecked()){
                     selectedTags.add(tag); //checkBox.getText().toString()
-                else
+                    Log.d("TAGS", "Selektovan " + tag);
+                }
+
+                else {
                     selectedTags.remove(tag);
-                Log.d("TAGS", tag);
+                    Log.d("TAGS", "Deselektovan " + tag);
+                }
             });
 
             binding.tagsLayout.addView(checkBox);

@@ -56,7 +56,6 @@ public class HomeFragment extends Fragment {
 
 
     private void getStatisticData(@NonNull EndpointsInterface methods){
-        //TODO: Cuvati u view modelu, da bi se smanjio broj zahteva! (Mozda nije potrebno!)
 
         Call<HomeStatisticResponse> statisticCall = methods.getData();
         statisticCall.enqueue(new Callback<HomeStatisticResponse>() {
