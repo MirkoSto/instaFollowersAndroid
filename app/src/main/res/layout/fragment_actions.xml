@@ -66,7 +66,7 @@
         <org.apmem.tools.layouts.FlowLayout
             android:id="@+id/tags_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="30dp"
             android:gravity=""
 
@@ -82,7 +82,7 @@
         android:layout_width="@dimen/width_action_button"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="Start following"
         android:textSize="12sp"
         android:textColor="@color/blue_primary"
