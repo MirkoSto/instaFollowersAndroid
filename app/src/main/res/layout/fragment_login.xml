@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:text="𝓘𝓷𝓼𝓽𝓪 𝓕𝓸𝓵𝓵𝓸𝔀𝓮𝓻𝓼"
+        android:textSize="50dp"
+        android:textColor="@color/blue_primary"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/username_log_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_log_layout"
         android:layout_height="wrap_content"
@@ -14,7 +29,7 @@
 
         android:hint="username"
 
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="250dp"
         android:layout_marginHorizontal="50dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
@@ -69,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="50dp"
 
         android:text="login"
         android:textColor="@color/blue_primary"
@@ -80,6 +95,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/password_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

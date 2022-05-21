@@ -131,15 +131,18 @@ public class MainActivity extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
         else{
                 if (doubleBackToExitPressedOnce) {
-                    super.onBackPressed();
-                    return;
+                    this.finish();
                 }
 
                 this.doubleBackToExitPressedOnce = true;
-                Toast.makeText(this, "Please click back again to exit!", Toast.LENGTH_SHORT).show();
 
-                handler.postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
-            }
+
+                handler.postDelayed(() ->doubleBackToExitPressedOnce = false, 2000);
+
+                //TODO: popraviti prikaz toast poruke
+                if(!doubleBackToExitPressedOnce)
+                    Toast.makeText(this, "Please click back again to exit!", Toast.LENGTH_SHORT).show();
+        }
 
         }
 
