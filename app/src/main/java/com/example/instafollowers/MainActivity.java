@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
     public SharedPreferences getPreferences(){
         return preferences;
     }
+
+    public NavController getNavController() { return navController; }
 }
 
 

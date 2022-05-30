@@ -25,6 +25,9 @@ public interface EndpointsInterface {
     @POST("login")
     Call<LoginRequest> login(@QueryMap Map<String, String> params);
 
-    @GET("isLoged")
+    @GET("isLogged")
     Call<LoginResponse> isLogged();
+
+    @GET("watch")
+    Call<ActionResponse> watch();
 }

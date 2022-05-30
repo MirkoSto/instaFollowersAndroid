@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +40,7 @@ public class ActionsFragment extends Fragment {
 
     private FragmentActionsBinding binding;
     private MainActivity mainActivity;
+    private NavController navController;
     private UserViewModel viewModel;
     private SharedPreferences preferences;
     private ArrayList<String> selectedTags;
@@ -53,11 +56,15 @@ public class ActionsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mainActivity = (MainActivity) requireActivity();
+        navController = mainActivity.getNavController();
         viewModel = new ViewModelProvider(mainActivity).get(UserViewModel.class);
         preferences = mainActivity.getPreferences();
         selectedTags = new ArrayList<>();
         allTags = new ArrayList<>();
     }
+
+    //TODO: pri svakom ucitavanju ovog fragmenta, traziti od servera dozvole
+    // za pokretanje akcija preko dugmica, inace nece moci da se pritisne
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,6 +139,7 @@ public class ActionsFragment extends Fragment {
 
         EndpointsInterface api = RetrofitClient.getRetrofitInstance().create(EndpointsInterface.class);
 
+        //TODO: onemoguciti kliktanje dugmeta dok se ne izvrsi akcija na serveru!
         binding.followButton.setOnClickListener(click -> {
             follow(api);
         });
@@ -144,8 +152,14 @@ public class ActionsFragment extends Fragment {
             like(api);
         });
 
+        binding.storiesButton.setOnClickListener(click -> {
+            watch(api);
+        });
+
         return binding.getRoot();
     }
+
+
 
     private void updatePreferencesForTag() {
 
@@ -235,8 +249,15 @@ public class ActionsFragment extends Fragment {
                     Toast.makeText(mainActivity, "Something went wrong! Status code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Log.d("FOLLOWING", response.body().getResponse());
-                Toast.makeText(mainActivity, "Started following!", Toast.LENGTH_SHORT).show();
+                if (response.body().getResponse().equals("false")) {
+                    navController.navigate(R.id.loginFragment);
+                    Toast.makeText(mainActivity, "You must login!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(mainActivity, "Action following started!", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
 
             @Override
@@ -257,7 +278,12 @@ public class ActionsFragment extends Fragment {
                     return;
                 }
 
-                Toast.makeText(mainActivity, "Started ufollowing!", Toast.LENGTH_SHORT).show();
+                if (response.body().getResponse().equals("false")) {
+                    navController.navigate(R.id.loginFragment);
+                    Toast.makeText(mainActivity, "You must login!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(mainActivity, "Action ufollowing started!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -290,7 +316,12 @@ public class ActionsFragment extends Fragment {
                     return;
                 }
 
-                Toast.makeText(mainActivity, "Started ufollowing!", Toast.LENGTH_SHORT).show();
+                if (response.body().getResponse().equals("false")) {
+                    navController.navigate(R.id.loginFragment);
+                    Toast.makeText(mainActivity, "You must login!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(mainActivity, "Action liking started!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -300,5 +331,30 @@ public class ActionsFragment extends Fragment {
         });
     }
 
+    private void watch(EndpointsInterface api) {
+
+        Call<ActionResponse> response = api.watch();
+        response.enqueue(new Callback<ActionResponse>() {
+            @Override
+            public void onResponse(Call<ActionResponse> call, Response<ActionResponse> response) {
+                if (response.code() != 200) {
+                    Toast.makeText(mainActivity, "Something went wrong! Status code " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (response.body().getResponse().equals("false")) {
+                    navController.navigate(R.id.loginFragment);
+                    Toast.makeText(mainActivity, "You must login!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(mainActivity, "Action watching started!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ActionResponse> call, Throwable t) {
+                Toast.makeText(mainActivity, "Unsuccessful request, try again later! " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }
