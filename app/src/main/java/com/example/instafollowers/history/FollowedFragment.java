@@ -1,4 +1,4 @@
-package com.example.instafollowers.followers;
+package com.example.instafollowers.history;
 
 import android.os.Bundle;
 
@@ -12,13 +12,16 @@ import com.example.instafollowers.R;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+
 @AndroidEntryPoint
-public class UnfollowersFragment extends Fragment {
+public class FollowedFragment extends Fragment {
 
 
-    public UnfollowersFragment() {
+    public FollowedFragment() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,6 @@ public class UnfollowersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_unfollowers, container, false);
+        return inflater.inflate(R.layout.fragment_followed, container, false);
     }
 }

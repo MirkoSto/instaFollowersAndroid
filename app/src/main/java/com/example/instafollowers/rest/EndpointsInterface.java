@@ -30,4 +30,7 @@ public interface EndpointsInterface {
 
     @GET("watch")
     Call<ActionResponse> watch();
+
+    @GET("getLikedPictures")
+    Call<LikeResponse> getLikedPictures();
 }

@@ -21,18 +21,18 @@
         android:label="StatisticFragment"
         tools:layout="@layout/fragment_home"/>
     <fragment
-        android:id="@+id/unfollowersFragment"
-        android:name="com.example.instafollowers.followers.UnfollowersFragment"
+        android:id="@+id/watchedFragment"
+        android:name="com.example.instafollowers.history.WatchedFragment"
         android:label="fragment_unfollowers"
-        tools:layout="@layout/fragment_unfollowers" />
+        tools:layout="@layout/fragment_watched" />
     <fragment
         android:id="@+id/followedFragment"
-        android:name="com.example.instafollowers.followers.FollowedFragment"
+        android:name="com.example.instafollowers.history.FollowedFragment"
         android:label="fragment_followed"
         tools:layout="@layout/fragment_followed" />
     <fragment
         android:id="@+id/unfollowedFragment"
-        android:name="com.example.instafollowers.followers.UnfollowedFragment"
+        android:name="com.example.instafollowers.history.UnfollowedFragment"
         android:label="fragment_unfollowed"
         tools:layout="@layout/fragment_unfollowed" />
     <fragment
@@ -40,4 +40,9 @@
         android:name="com.example.instafollowers.actions.ActionsFragment"
         android:label="fragment_actions"
         tools:layout="@layout/fragment_actions" />
+    <fragment
+        android:id="@+id/likedFragment"
+        android:name="com.example.instafollowers.history.LikedFragment"
+        android:label="fragment_liked"
+        tools:layout="@layout/fragment_liked" />
 </navigation>

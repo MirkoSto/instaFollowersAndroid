@@ -4,10 +4,14 @@ import android.util.Log;
 
 import androidx.hilt.Assisted;
 import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.example.instafollowers.database.userdata.UserRepository;
+
+import java.util.List;
 
 public class UserViewModel extends ViewModel {
     boolean isInitialized;
@@ -39,6 +43,8 @@ public class UserViewModel extends ViewModel {
 
     String tags = "";
 
+    List<String> hrefs;
+
     private final SavedStateHandle savedStateHandle;
     private final UserRepository userRepository;
 
@@ -49,6 +55,14 @@ public class UserViewModel extends ViewModel {
         this.userRepository = userRepository;
         this.savedStateHandle = savedStateHandle;
 
+    }
+
+    public List<String> getHrefs() {
+        return hrefs;
+    }
+
+    public void setHrefs(List<String> hrefs) {
+        this.hrefs = hrefs;
     }
 
     public String getUsername() {
