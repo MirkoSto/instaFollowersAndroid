@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.instafollowers.database.userdata.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserViewModel extends ViewModel {
@@ -43,7 +44,8 @@ public class UserViewModel extends ViewModel {
 
     String tags = "";
 
-    List<String> hrefs;
+    MutableLiveData<List<String>> hrefs = new MutableLiveData<>(new ArrayList<>());
+    MutableLiveData<List<String>> followed_usernames = new MutableLiveData<>(new ArrayList<>());
 
     private final SavedStateHandle savedStateHandle;
     private final UserRepository userRepository;
@@ -57,12 +59,21 @@ public class UserViewModel extends ViewModel {
 
     }
 
-    public List<String> getHrefs() {
+    public MutableLiveData<List<String>> getFollowedUsernames() {
+        return followed_usernames;
+    }
+
+    public void setFollowedUsernames(List<String> followed_usernames) {
+        this.followed_usernames.setValue(followed_usernames);
+    }
+
+    public MutableLiveData<List<String>> getHrefs() {
         return hrefs;
     }
 
     public void setHrefs(List<String> hrefs) {
-        this.hrefs = hrefs;
+            this.hrefs.setValue(hrefs);
+
     }
 
     public String getUsername() {

@@ -60,40 +60,11 @@ public class HomeFragment extends Fragment {
 
         EndpointsInterface api = RetrofitClient.getRetrofitInstance().create(EndpointsInterface.class);
         getStatisticData(api);
-        getLikedPictures(api);
+
 
         return binding.getRoot();
     }
 
-
-    private void getLikedPictures(@NonNull EndpointsInterface api){
-
-        Call<LikeResponse> request = api.getLikedPictures();
-        request.enqueue(new Callback<LikeResponse>() {
-            @Override
-            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
-                Log.d("LIKED_PICTURE", "Response code : " + response.code());
-
-                if(response.code() == 500){
-                    navController.navigate(R.id.loginFragment);
-                    Toast.makeText(mainActivity, "You must login!", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    String[] hrefs = response.body().getLiked_pics();
-                    List<String> list = new ArrayList<>(Arrays.asList(hrefs));
-                    Log.d("LIKED_PICTURE", "duzina liste fotografija : " + hrefs.length);
-                    viewModel.setHrefs(list);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LikeResponse> call, Throwable error) {
-                Log.d("LIKED_FRAGMENT", "Doslo je do grekse!" + error.getMessage());
-                Toast.makeText(mainActivity, "Doslo je do grekse!", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     private void getStatisticData(@NonNull EndpointsInterface api){
 

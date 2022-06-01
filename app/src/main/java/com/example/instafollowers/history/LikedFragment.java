@@ -57,7 +57,15 @@ public class LikedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLikedBinding.inflate(inflater, container, false);
 
-        LikedPicturesAdapter adapter = new LikedPicturesAdapter(viewModel.getHrefs(), mainActivity);
+        getLikedPictures();
+
+        LikedPicturesAdapter adapter = new LikedPicturesAdapter(mainActivity);
+
+        viewModel.getHrefs().observe(
+                getViewLifecycleOwner(),
+                adapter::setHrefs);
+
+
 
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
@@ -83,7 +91,9 @@ public class LikedFragment extends Fragment {
                     String[] hrefs = response.body().getLiked_pics();
                     List<String> list = new ArrayList<>(Arrays.asList(hrefs));
                     Log.d("LIKED_PICTURE", "duzina liste fotografija : " + hrefs.length);
+
                     viewModel.setHrefs(list);
+
                 }
 
             }

@@ -21,7 +21,6 @@ public interface EndpointsInterface {
     @GET("like")
     Call<ActionResponse> like(@QueryMap Map<String, String> params);
 
-
     @POST("login")
     Call<LoginRequest> login(@QueryMap Map<String, String> params);
 
@@ -33,4 +32,7 @@ public interface EndpointsInterface {
 
     @GET("getLikedPictures")
     Call<LikeResponse> getLikedPictures();
+
+    @GET("getFollowedUsernames")
+    Call<FollowedResponse> getFollowedUsernames();
 }

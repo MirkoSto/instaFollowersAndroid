@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
                     currentFragmentId = R.id.likedFragment;
                     break;
 
+                case R.id.followed_fragment:
+                    navController.navigate(R.id.followedFragment, null, options);
+                    currentFragmentId = R.id.followedFragment;
+                    break;
+
             }
 
             Log.d("FRAGMENTI", "cleared? " + cleared);
