@@ -46,6 +46,7 @@ public class UserViewModel extends ViewModel {
 
     MutableLiveData<List<String>> hrefs = new MutableLiveData<>(new ArrayList<>());
     MutableLiveData<List<String>> followed_usernames = new MutableLiveData<>(new ArrayList<>());
+    MutableLiveData<List<String>> unfollowed_usernames = new MutableLiveData<>(new ArrayList<>());
 
     private final SavedStateHandle savedStateHandle;
     private final UserRepository userRepository;
@@ -57,6 +58,14 @@ public class UserViewModel extends ViewModel {
         this.userRepository = userRepository;
         this.savedStateHandle = savedStateHandle;
 
+    }
+
+    public MutableLiveData<List<String>> getUnfollowedUsernames() {
+        return unfollowed_usernames;
+    }
+
+    public void setUnfollowedUsernames(List<String> unfollowed_usernames) {
+        this.unfollowed_usernames.setValue(unfollowed_usernames);
     }
 
     public MutableLiveData<List<String>> getFollowedUsernames() {

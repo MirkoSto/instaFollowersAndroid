@@ -17,12 +17,10 @@ import android.widget.Toast;
 import com.example.instafollowers.MainActivity;
 import com.example.instafollowers.R;
 import com.example.instafollowers.databinding.FragmentFollowedBinding;
-import com.example.instafollowers.databinding.FragmentLikedBinding;
-import com.example.instafollowers.history.adapters.FollowedUsersAdapter;
+import com.example.instafollowers.history.adapters.UsersAdapter;
 import com.example.instafollowers.homepage.UserViewModel;
 import com.example.instafollowers.rest.EndpointsInterface;
-import com.example.instafollowers.rest.FollowedResponse;
-import com.example.instafollowers.rest.LikeResponse;
+import com.example.instafollowers.rest.UsersResponse;
 import com.example.instafollowers.rest.RetrofitClient;
 
 import java.util.ArrayList;
@@ -42,7 +40,6 @@ public class FollowedFragment extends Fragment {
     private FragmentFollowedBinding binding;
     private UserViewModel viewModel;
     private NavController navController;
-    private FollowedFragment fragment;
 
     public FollowedFragment() {
         // Required empty public constructor
@@ -57,7 +54,6 @@ public class FollowedFragment extends Fragment {
         mainActivity = (MainActivity) requireActivity();
         viewModel = new ViewModelProvider(mainActivity).get(UserViewModel.class);
         navController = mainActivity.getNavController();
-        fragment = this;
     }
 
     @SuppressLint("SetTextI18n")
@@ -67,7 +63,7 @@ public class FollowedFragment extends Fragment {
 
         getFollowedUsernames();
 
-        FollowedUsersAdapter adapter = new FollowedUsersAdapter(mainActivity);
+        UsersAdapter adapter = new UsersAdapter(mainActivity);
 
         viewModel.getFollowedUsernames().observe(
                 getViewLifecycleOwner(),
@@ -75,12 +71,7 @@ public class FollowedFragment extends Fragment {
 
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
-/*
-        viewModel.getFollowedUsernames().observe(
-                getViewLifecycleOwner(),
-                binding.totalNumber.setText("(total " + viewModel.getFollowedUsernames().getValue().size() + ")"));
 
-*/
 
         return binding.getRoot();
     }
@@ -89,10 +80,10 @@ public class FollowedFragment extends Fragment {
     private void getFollowedUsernames(){
         EndpointsInterface api = RetrofitClient.getRetrofitInstance().create(EndpointsInterface.class);
 
-        Call<FollowedResponse> request = api.getFollowedUsernames();
-        request.enqueue(new Callback<FollowedResponse>() {
+        Call<UsersResponse> request = api.getFollowedUsernames();
+        request.enqueue(new Callback<UsersResponse>() {
             @Override
-            public void onResponse(Call<FollowedResponse> call, Response<FollowedResponse> response) {
+            public void onResponse(Call<UsersResponse> call, Response<UsersResponse> response) {
                 Log.d("LIKED_PICTURE", "Response code : " + response.code());
 
                 if(response.code() == 500){
@@ -100,9 +91,8 @@ public class FollowedFragment extends Fragment {
                     Toast.makeText(mainActivity, "You must login!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    String[] usernames = response.body().getFollowedUsernames();
+                    String[] usernames = response.body().getUsernames();
                     List<String> list = new ArrayList<>(Arrays.asList(usernames));
-                    Log.d("LIKED_PICTURE", "duzina liste fotografija : " + usernames.length);
 
                     viewModel.setFollowedUsernames(list);
                 }
@@ -110,7 +100,7 @@ public class FollowedFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<FollowedResponse> call, Throwable error) {
+            public void onFailure(Call<UsersResponse> call, Throwable error) {
                 Log.d("LIKED_FRAGMENT", "Doslo je do grekse!" + error.getMessage());
                 Toast.makeText(mainActivity, "Doslo je do grekse!", Toast.LENGTH_LONG).show();
             }

@@ -34,5 +34,8 @@ public interface EndpointsInterface {
     Call<LikeResponse> getLikedPictures();
 
     @GET("getFollowedUsernames")
-    Call<FollowedResponse> getFollowedUsernames();
+    Call<UsersResponse> getFollowedUsernames();
+
+    @GET("getUnfollowedUsernames")
+    Call<UsersResponse> getUnfollowedUsernames();
 }

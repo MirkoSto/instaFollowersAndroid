@@ -6,24 +6,22 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instafollowers.MainActivity;
-import com.example.instafollowers.databinding.ViewHolderFollowedBinding;
-import com.example.instafollowers.databinding.ViewHolderPictureBinding;
+import com.example.instafollowers.databinding.ViewHolderUsernameBinding;
 
 import java.util.List;
 
-public class FollowedUsersAdapter extends RecyclerView.Adapter<FollowedUsersAdapter.ViewHolder> {
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
 
     private List<String> usernames;
     private MainActivity mainActivity;
 
-    public FollowedUsersAdapter(MainActivity mainActivity){
+    public UsersAdapter(MainActivity mainActivity){
         this.mainActivity = mainActivity;
     }
 
@@ -40,7 +38,7 @@ public class FollowedUsersAdapter extends RecyclerView.Adapter<FollowedUsersAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ViewHolderFollowedBinding viewHolderFollowedBinding = ViewHolderFollowedBinding.inflate(
+        ViewHolderUsernameBinding viewHolderFollowedBinding = ViewHolderUsernameBinding.inflate(
                 layoutInflater,
                 parent,
                 false);
@@ -59,9 +57,9 @@ public class FollowedUsersAdapter extends RecyclerView.Adapter<FollowedUsersAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        ViewHolderFollowedBinding binding;
+        ViewHolderUsernameBinding binding;
 
-        public ViewHolder(@NonNull ViewHolderFollowedBinding binding) {
+        public ViewHolder(@NonNull ViewHolderUsernameBinding binding) {
             super(binding.getRoot());
 
             this.binding = binding;

@@ -8,10 +8,6 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/login_fragment"
-                    android:icon="@drawable/ic_account_24"
-                    android:title="Login" />
-                <item
                     android:id="@+id/homepage_fragment"
                     android:icon="@drawable/ic_home_page_24"
                     android:title="Home page" />
@@ -44,10 +40,6 @@
                     android:id="@+id/liked_fragment"
                     android:icon="@drawable/ic_like_24"
                     android:title="Liked" />
-                <item
-                    android:id="@+id/commented_fragment"
-                    android:icon="@drawable/ic_comment_24"
-                    android:title="Commented" />
                 <item
                     android:id="@+id/watched_fragment"
                     android:icon="@drawable/ic_eye_24"

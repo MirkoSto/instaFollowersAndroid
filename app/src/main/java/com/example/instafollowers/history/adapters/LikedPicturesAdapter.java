@@ -48,7 +48,7 @@ public class LikedPicturesAdapter extends RecyclerView.Adapter<LikedPicturesAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(hrefs.get(position));
+        holder.bind(position, hrefs.get(position));
     }
 
     @Override
@@ -65,8 +65,10 @@ public class LikedPicturesAdapter extends RecyclerView.Adapter<LikedPicturesAdap
             this.binding = binding;
         }
 
-        public void bind(String href){
+        public void bind(int position, String href){
             Log.d("LIKED_ADAPTER", "Binding ");
+
+            binding.picNumber.setText(position + 1 + ".");
             binding.href.setText(href);
 
             binding.viewButton.setOnClickListener(click -> {

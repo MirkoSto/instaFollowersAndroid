@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         if(preferences.getBoolean("logged", false)) {
             currentFragmentId = R.id.homeFragment;
             navController.navigate(R.id.homeFragment);
+            binding.navView.getMenu().getItem(0).setChecked(true);
         }
         else {
             currentFragmentId = R.id.loginFragment;
@@ -124,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.followed_fragment:
                     navController.navigate(R.id.followedFragment, null, options);
                     currentFragmentId = R.id.followedFragment;
+                    break;
+
+                case R.id.unfollowed_fragment:
+                    navController.navigate(R.id.unfollowedFragment, null, options);
+                    currentFragmentId = R.id.unfollowedFragment;
                     break;
 
             }
